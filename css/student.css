@@ -15,13 +15,30 @@ What this file provides:
 
 :root {
   /* Colors --- change these to adjust your student theme */
-  --student-accent: #0a66c2;           /* primary accent */
-  --student-accent-contrast: #ffffff;  /* text color on accent backgrounds */
-  --student-muted: #6b7280;            /* muted text */
-  --student-bg: transparent;           /* additional background for student components */
+  --accent: #2beffb !important;
+  --bg: #737902 !important;
+  --accent-bg: #76003f !important;
+  --text: #1eff00 !important;
+  --text-light: #ff00dd !important;
+  --accent-hover: #ffe099;
+  --accent-text: var(--bg);
+  --code: #ebaddc !important;
+  /* primary accent */
+  --student-accent-contrast: #ffffff;
+  /* text color on accent backgrounds */
+  --student-muted: #6b7280;
+  /* muted text */
+  --student-bg: transparent;
+  /* additional background for student components */
 
   /* Typography --- prefer fonts that are web-safe or already available */
-  --student-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --student-font-family: system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
   --student-heading-weight: 600;
 
   /* Spacing & shape */
@@ -29,11 +46,123 @@ What this file provides:
   --student-radius: 8px;
 }
 
+
+#circle {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: blue;
+}
+
+#circle2 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: green;
+}
+
+#circle3 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: yellow;
+}
+
+#circle4 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: yellowgreen;
+}
+
+#circle5 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: purple
+}
+
+
+
+#circle6 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: blue;
+}
+
+#circle7 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: green;
+}
+
+#circle8 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: yellow;
+}
+
+#circle9 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: yellowgreen;
+}
+
+#circle10 {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: purple
+}
+
+
+
+
 /* ---------------------------
    Example namespaced components
    --------------------------- */
 
 /* Banner — for a short header / announcement */
+
+.notice {
+  display: grid;
+  grid-template-areas:
+    "up-events About";
+  grid-template-columns: fit-content(1fr), fit-content(2fr);
+}
+
+.container div.up-events {
+  grid-area: "up-events";
+}
+
+.container div.About {
+  grid-area: "About";
+}
+
 .student-banner {
   display: block;
   padding: calc(var(--student-gap) * 1.25);
@@ -47,10 +176,10 @@ What this file provides:
 /* Card — contained content block */
 .student-card {
   background: var(--student-bg);
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   padding: calc(var(--student-gap) * 1.25);
   border-radius: var(--student-radius);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
   margin: 0 0 var(--student-gap) 0;
   font-family: var(--student-font-family);
 }
@@ -72,15 +201,24 @@ What this file provides:
   font-family: var(--student-font-family);
   font-weight: 600;
 }
+
 .student-btn:focus,
 .student-btn:hover {
   opacity: 0.95;
 }
 
 /* Small helper utilities (namespaced) */
-.student-muted { color: var(--student-muted); }
-.student-center { text-align: center; }
-.student-stack > * + * { margin-top: var(--student-gap); }
+.student-muted {
+  color: var(--student-muted);
+}
+
+.student-center {
+  text-align: center;
+}
+
+.student-stack>*+* {
+  margin-top: var(--student-gap);
+}
 
 /* Avoid global resets here. Keep selectors specific and namespaced. */
 
