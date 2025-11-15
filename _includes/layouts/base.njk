@@ -43,17 +43,26 @@ Student notes:
 		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
 
 		<header>
-			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-			<nav>
-				<h2 class="visually-hidden">Top level navigation menu</h2>
-				<ul class="nav">
-				{%- for entry in collections.all | eleventyNavigation %}
-					<li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
-				{%- endfor %}
-				</ul>
-			</nav>
-			<h1>{%- if title %}{{ title }}{%- else %}{{ metadata.title }}{%- endif %}</h1>
-   		<p>{% if description %}{{ description }}{% endif %}</p>
+			<div class="student-header-content">
+				<a href="{{ '/' | url }}" class="student-logo-link">
+					<img src="{{ '/img/ACM_logo.png' | url }}" alt="ACM at Allegheny College" class="student-header-logo">
+				</a>
+				{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+				<nav>
+					<h2 class="visually-hidden">Top level navigation menu</h2>
+					<ul class="nav">
+					{%- for entry in collections.all | eleventyNavigation %}
+						<li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
+					{%- endfor %}
+					</ul>
+				</nav>
+			</div>
+			{%- if title and title != "Home" %}
+			<h1>{{ title }}</h1>
+			{%- if description %}
+			<p>{{ description }}</p>
+			{%- endif %}
+			{%- endif %}
 		</header>
 
 		<main id="main">
@@ -63,7 +72,28 @@ Student notes:
 		</main>
 
 		<footer>
-			<p><em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a> and <a href="https://simplecss.org">Simple.css</a></em></p>
+			<div class="student-footer-content">
+				<div class="student-footer-section">
+					<h3>ACM at Allegheny College</h3>
+					<p>Developing technical skills and fostering collaboration across campus.</p>
+				</div>
+				<div class="student-footer-section">
+					<h3>Quick Links</h3>
+					<ul class="student-footer-links">
+					{%- for entry in collections.all | eleventyNavigation %}
+						<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+					{%- endfor %}
+					</ul>
+				</div>
+				<div class="student-footer-section">
+					<h3>Connect</h3>
+					<ul class="student-footer-links">
+						<li><a href="https://discord.gg/9vpuKkP6" target="_blank" rel="noopener noreferrer">Discord</a></li>
+						<li><a href="mailto:acm@allegheny.edu">Email Us</a></li>
+					</ul>
+				</div>
+			</div>
+			<p class="student-footer-credit"><em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a></em></p>
 		</footer>
 
 		<!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->

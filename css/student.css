@@ -1,105 +1,526 @@
 /*
-Student-safe stylesheet for club-starter-template
-
-Guidelines (read before editing):
-- ONLY edit or add rules prefixed with `.student-` or adjust the CSS custom properties (variables) in the :root section below.
-- Avoid changing element selectors (html, body, h1, p, a, etc.) or existing class names used by the template.
-- Prefer overriding variables rather than changing core styles.
-- Add additional classes that begin with `student-` to keep your styles isolated.
-
-What this file provides:
-- A small set of CSS variables you can tweak safely.
-- A few namespaced utility components (banner, card, button) you can use in your content.
-- Examples showing how to apply color, spacing, and typography changes.
+Allegheny ACM Website - Student Stylesheet
+Bold, modern design with blues and purples (avoiding red/yellow)
 */
 
 :root {
-  /* Colors --- change these to adjust your student theme */
-  --student-accent: #0a66c2;           /* primary accent */
-  --student-accent-contrast: #ffffff;  /* text color on accent backgrounds */
-  --student-muted: #6b7280;            /* muted text */
-  --student-bg: transparent;           /* additional background for student components */
+  /* Color Scheme - Blues and Purples */
+  --student-accent: #3b82f6;           /* Primary blue */
+  --student-accent-dark: #1e3a8a;      /* Deep blue */
+  --student-accent-light: #60a5fa;     /* Light blue */
+  --student-purple: #7c3aed;           /* Primary purple */
+  --student-purple-dark: #5b21b6;      /* Deep purple */
+  --student-purple-light: #a855f7;     /* Light purple */
+  --student-accent-contrast: #ffffff;  /* White text on colored backgrounds */
+  --student-muted: #64748b;            /* Muted gray text */
+  --student-bg: #ffffff;               /* White background */
+  --student-bg-alt: #f8fafc;          /* Light gray background */
+  --student-border: rgba(59, 130, 246, 0.2); /* Subtle blue border */
 
-  /* Typography --- prefer fonts that are web-safe or already available */
-  --student-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --student-heading-weight: 600;
+  /* Typography */
+  --student-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --student-heading-weight: 700;
+  --student-body-weight: 400;
 
   /* Spacing & shape */
-  --student-gap: 0.75rem;
-  --student-radius: 8px;
+  --student-gap: 1rem;
+  --student-radius: 12px;
+  --student-radius-large: 20px;
+  --student-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --student-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* ---------------------------
-   Example namespaced components
-   --------------------------- */
+/* Global overrides for better integration */
+body {
+  font-family: var(--student-font-family);
+  line-height: 1.6;
+}
 
-/* Banner — for a short header / announcement */
-.student-banner {
-  display: block;
-  padding: calc(var(--student-gap) * 1.25);
-  margin: 0 0 var(--student-gap) 0;
-  background: linear-gradient(90deg, var(--student-accent), color-mix(in srgb, var(--student-accent) 60%, #000000 40%));
+/* Hero Section */
+.student-hero {
+  background: linear-gradient(135deg, var(--student-accent-dark) 0%, var(--student-purple-dark) 100%);
   color: var(--student-accent-contrast);
-  border-radius: var(--student-radius);
-  font-family: var(--student-font-family);
+  padding: 4rem 2rem;
+  margin: -2rem -2rem 3rem -2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Card — contained content block */
-.student-card {
-  background: var(--student-bg);
-  border: 1px solid rgba(0,0,0,0.06);
-  padding: calc(var(--student-gap) * 1.25);
-  border-radius: var(--student-radius);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-  margin: 0 0 var(--student-gap) 0;
-  font-family: var(--student-font-family);
+.student-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: pulse 20s ease-in-out infinite;
 }
 
-.student-card h2,
-.student-card h3 {
-  margin-top: 0;
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.student-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.student-logo-large {
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.student-hero-title {
+  font-size: 3.5rem;
   font-weight: var(--student-heading-weight);
+  margin: 0 0 1rem 0;
+  text-transform: lowercase;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Button-like link (use as <a class="student-btn"> or <button class="student-btn">) */
+.student-hero-subtitle {
+  font-size: 1.25rem;
+  margin: 0 0 2rem 0;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.student-hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
 .student-btn {
   display: inline-block;
-  padding: 0.45rem 0.85rem;
+  padding: 0.75rem 1.5rem;
   background: var(--student-accent);
   color: var(--student-accent-contrast);
   border-radius: 999px;
   text-decoration: none;
   font-family: var(--student-font-family);
   font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
 }
-.student-btn:focus,
-.student-btn:hover {
-  opacity: 0.95;
+
+.student-btn:hover,
+.student-btn:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--student-shadow-lg);
+  background: var(--student-accent-light);
 }
 
-/* Small helper utilities (namespaced) */
-.student-muted { color: var(--student-muted); }
-.student-center { text-align: center; }
-.student-stack > * + * { margin-top: var(--student-gap); }
+.student-btn-primary {
+  background: var(--student-accent-contrast);
+  color: var(--student-accent-dark);
+}
 
-/* Avoid global resets here. Keep selectors specific and namespaced. */
+.student-btn-primary:hover,
+.student-btn-primary:focus {
+  background: var(--student-bg-alt);
+  color: var(--student-purple-dark);
+}
 
-/* ---------------------------
-   Examples / How-to
-   ---------------------------
-   1) To change the accent color site-wide (safe):
+.student-btn-secondary {
+  background: transparent;
+  color: var(--student-accent-contrast);
+  border-color: var(--student-accent-contrast);
+}
 
-      :root { --student-accent: #c2185b; }
+.student-btn-secondary:hover,
+.student-btn-secondary:focus {
+  background: var(--student-accent-contrast);
+  color: var(--student-accent-dark);
+}
 
-   2) To style a specific page only, wrap page content with a container and scope the variables:
+.student-btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
 
-      <main class="student-root" style="--student-accent:#2b9348">
-        <div class="student-card">Hello</div>
-      </main>
+/* Section Styling */
+.student-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--student-bg-alt);
+  border-radius: var(--student-radius);
+}
 
-   3) To add more utilities, create classes named like `.student-foo`.
+.student-section-intro {
+  font-size: 1.125rem;
+  color: var(--student-muted);
+  margin-bottom: 2rem;
+}
 
-   Notes:
-   - If you must target existing template elements, prefer adding an extra wrapper and styling inside that wrapper rather than changing global selectors.
-   - Do not remove or heavily modify the variables used here — other student styles may rely on them.
-*/
+/* Board Grid */
+.student-board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.student-board-card {
+  background: var(--student-bg);
+  border: 2px solid var(--student-border);
+  border-radius: var(--student-radius);
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: var(--student-shadow);
+}
+
+.student-board-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--student-shadow-lg);
+  border-color: var(--student-accent);
+}
+
+.student-board-image {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--student-accent) 0%, var(--student-purple) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.student-board-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.student-board-placeholder {
+  font-size: 2.5rem;
+  font-weight: var(--student-heading-weight);
+  color: var(--student-accent-contrast);
+  text-transform: uppercase;
+}
+
+.student-board-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: var(--student-accent-dark);
+}
+
+.student-board-role {
+  font-weight: 600;
+  color: var(--student-purple);
+  margin: 0 0 0.25rem 0;
+  font-size: 1.125rem;
+}
+
+.student-board-class {
+  color: var(--student-muted);
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+}
+
+.student-board-bio {
+  color: var(--student-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Contact Links */
+.student-contact-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.student-contact-item {
+  background: var(--student-bg-alt);
+  padding: 2rem;
+  border-radius: var(--student-radius);
+  border: 2px solid var(--student-border);
+}
+
+.student-contact-item h3 {
+  color: var(--student-accent-dark);
+  margin-top: 0;
+}
+
+/* Join CTA */
+.student-join-cta {
+  text-align: center;
+  margin: 3rem 0;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, var(--student-accent) 0%, var(--student-purple) 100%);
+  border-radius: var(--student-radius-large);
+  color: var(--student-accent-contrast);
+}
+
+/* Calendar Wrapper */
+.student-calendar-wrapper {
+  margin: 2rem 0;
+  border-radius: var(--student-radius);
+  overflow: hidden;
+  box-shadow: var(--student-shadow);
+  border: 2px solid var(--student-border);
+}
+
+.student-calendar-wrapper iframe {
+  display: block;
+  width: 100%;
+  min-height: 600px;
+}
+
+/* Header/Navigation Enhancements */
+header {
+  background: var(--student-bg);
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, var(--student-accent) 0%, var(--student-purple) 100%) 1;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+}
+
+.student-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.student-logo-link {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.student-logo-link:hover {
+  transform: scale(1.05);
+}
+
+.student-header-logo {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+header nav {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+header nav .nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+header nav .nav-item a {
+  color: var(--student-accent-dark);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--student-radius);
+  transition: all 0.2s ease;
+}
+
+header nav .nav-item a:hover,
+header nav .nav-item a[aria-current="page"] {
+  background: linear-gradient(135deg, var(--student-accent) 0%, var(--student-purple) 100%);
+  color: var(--student-accent-contrast);
+}
+
+header h1 {
+  text-align: center;
+  background: linear-gradient(135deg, var(--student-accent-dark) 0%, var(--student-purple-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  margin: 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
+}
+
+/* Footer Enhancements */
+footer {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, var(--student-accent) 0%, var(--student-purple) 100%) 1;
+  background: var(--student-bg-alt);
+  color: var(--student-muted);
+}
+
+.student-footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.student-footer-section h3 {
+  color: var(--student-accent-dark);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.student-footer-section p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.student-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.student-footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.student-footer-links a {
+  color: var(--student-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.student-footer-links a:hover {
+  color: var(--student-accent);
+}
+
+.student-footer-credit {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--student-border);
+  font-size: 0.9rem;
+}
+
+.student-footer-credit a {
+  color: var(--student-accent);
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .student-hero {
+    padding: 3rem 1.5rem;
+    margin: -1rem -1rem 2rem -1rem;
+  }
+
+  .student-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .student-hero-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .student-board-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .student-contact-links {
+    grid-template-columns: 1fr;
+  }
+
+  .student-header-content {
+    padding: 0 1rem;
+  }
+
+  header nav .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .student-footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .student-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .student-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-hero-title {
+    font-size: 2rem;
+  }
+
+  .student-section {
+    padding: 1.5rem;
+  }
+
+  .student-board-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Utility Classes */
+.student-muted { 
+  color: var(--student-muted); 
+}
+
+.student-center { 
+  text-align: center; 
+}
+
+.student-stack > * + * { 
+  margin-top: var(--student-gap); 
+}
+
+/* Geometric accent shapes (inspired by ACM logo diamond) */
+.student-diamond {
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-bottom-color: var(--student-accent);
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.student-diamond::after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top-color: var(--student-accent);
+}
