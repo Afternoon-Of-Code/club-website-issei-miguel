@@ -1,8 +1,8 @@
 export default {
-	title: "Eleventy Base Blog v9",
+	title: "Allegheny College ACM",
 	url: "https://example.com/",
 	language: "en",
-	description: "I am writing about my experiences as a naval navel-gazer.",
+	description: "ACM allegheny college branch.",
 	author: {
 		name: "Your Name Here",
 		email: "youremailaddress@example.com",
